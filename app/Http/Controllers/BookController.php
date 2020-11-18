@@ -52,11 +52,12 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Book $book
+     * @param $id
      * @return JsonResponse
      */
-    public function show(Book $book)
+    public function show($id)
     {
+        $book = Book::find($id);
         return response()->json($book);
     }
 
@@ -78,8 +79,9 @@ class BookController extends Controller
      * @param Book $book
      * @return JsonResponse
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, $id)
     {
+        $book = Book::find($id);
         $book->update($request->all());
         return response()->json([
             'message' => 'The book successfully',
